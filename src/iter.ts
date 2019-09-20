@@ -150,11 +150,11 @@ export class JSToPhosphorIterator<T> implements IIterator<T> {
     if (done) {
       return undefined;
     }
-    if (value === undefined) {
-      throw new Error(
-        "'undefined' is a Phosphor iterator value, which is not allowed"
-      );
-    }
+    // if (value === undefined) {
+    //   throw new Error(
+    //     "'undefined' is a Phosphor iterator value, which is not allowed"
+    //   );
+    // }
     return value;
   }
 
@@ -186,3 +186,4 @@ export class PhosphorToJSIterator<T> implements IterableIterator<T> {
 
   private _it: IIterator<T>;
 }
+

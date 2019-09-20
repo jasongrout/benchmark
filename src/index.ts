@@ -1,5 +1,7 @@
-import { iter } from './iter';
+import { iter, JSToPhosphorIterator } from './iter';
 import { runBenchmark } from './benchmark';
+import { each, filter } from '@phosphor/algorithm';
+
 
 function setup({ N }: { N: number } = { N: 1000 }) {
   let x = new Set<number>();
@@ -47,7 +49,7 @@ let tests = [
     }
   },
   {
-    name: 'phosphor iterator',
+    name: 'Convenient Phosphor iterator',
     fn: ({ x, answer }: ReturnType<typeof setup>) => {
       return () => {
         let sum = 0;
@@ -61,7 +63,23 @@ let tests = [
         }
       };
     }
+  },
+  {
+    name: 'Straight Phosphor iterator',
+    fn: ({ x, answer }: ReturnType<typeof setup>) => {
+      return () => {
+        let sum = 0;
+        let it = new JSToPhosphorIterator(x);
+        each(filter(it, (i: any) => i % 2 === 0), (i: any) => {
+          sum += i;
+        });
+        if (sum !== answer) {
+          throw new Error('Wrong answer');
+        }
+      };
+    }
   }
+
 ];
 
 (async function mybench() {
