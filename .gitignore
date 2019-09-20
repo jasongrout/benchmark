@@ -1,0 +1,21 @@
+lib
+node_modules
+*~
+*.bak
+.ipynb_checkpoints
+.DS_Store
+\#*#
+.#*
+*.swp
+*.map
+
+*.tsbuildinfo
+*.d.ts
+
+
+# jetbrains IDE stuff
+*.iml
+.idea/
+
+# ms IDE stuff
+.vscode
